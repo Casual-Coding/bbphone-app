@@ -1,6 +1,6 @@
 {
   "name": "bb-phone",
-  "description": "An iPhone client for the mods.de-Boards",
+  "description": "An iPhone client for the mods.de boards",
   "version": "0.0.1",
   "author": "Kristof Dreier <kontakt@kristofdreier.de>",
   "repository": {
