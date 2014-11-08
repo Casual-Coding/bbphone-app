@@ -41,6 +41,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    mkdir: {
+      "default": {
+        options: {
+          create: ["phonegap/plugins", "phonegap/platforms"]
+        }
+      }
+    },
     copy: {
       templates: {
         files: [
@@ -67,6 +74,12 @@ module.exports = function(grunt) {
             dest: "<%= pkg.buildDir %>/fonts/"
           }
         ]
+      },
+      api: {
+        expand: true,
+        cwd: "static/api",
+        src: "**/*",
+        dest: "<%= pkg.buildDir %>/api/"
       },
       index: {
         src: "static/index.html",
@@ -114,7 +127,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: ["<%= pkg.buildDir %>"]
+      build: ["<%= pkg.buildDir %>", "phonegap/platforms", "phonegap/plugins"]
     },
     watch: {
       coffee: {
@@ -135,6 +148,27 @@ module.exports = function(grunt) {
           spawn: false
         }
       },
+      api: {
+        files: ["static/api/*.xml"],
+        tasks: ["newer:copy:api"],
+        options: {
+          spawn: false
+        }
+      }
+    },
+    exec: {
+      "phonegap_serve": {
+        cwd: "phonegap",
+        command: "phonegap serve"
+      },
+      "phonegap_build_ios": {
+        cwd: "phonegap",
+        command: "phonegap build ios"
+      },
+      "phonegap_run_ios": {
+        cwd: "phonegap",
+        command: "phonegap run ios"
+      }
     },
     "string-replace": {
       bower: {
@@ -144,23 +178,56 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: /..\/..\/lib\/bower_components\//gi,
+              pattern: /..\/..\/..\/lib\/bower_components\//gi,
               replacement: "vendors/"
             }
           ]
         }
       }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 7000,
+          hostname: "localhost",
+          base: "<%= pkg.buildDir %>",
+          keepalive: true
+        }
+      }
     }
   });
+
   grunt.loadNpmTasks("grunt-contrib-coffee");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-requirejs");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-compass");
-  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-bower-requirejs");
   grunt.loadNpmTasks("grunt-newer");
   grunt.loadNpmTasks("grunt-string-replace");
+  grunt.loadNpmTasks("grunt-mkdir");
+  grunt.loadNpmTasks("grunt-cordovacli");
+  grunt.loadNpmTasks("grunt-contrib-connect");
+  grunt.loadNpmTasks("grunt-exec");
 
-  grunt.registerTask("default", ["compass:development", "coffee:compile", "copy:assets", "copy:templates", "copy:index", "copy:libs", "bower", "string-replace:bower"]);
+  grunt.registerTask("init", "Initialize the development environment.",[
+    "clean",
+    "mkdir"
+  ]);
+
+  grunt.registerTask("build:ios", "Build Platforms.", [
+    "default",
+    "exec:phonegap_build_ios"
+  ]);
+
+  grunt.registerTask("run:ios", "Run Platforms.", [
+    "default",
+    "exec:phonegap_run_ios"
+  ]);
+
+  grunt.registerTask("server", ["connect:server", "serve"]);
+  grunt.registerTask("serve", "Alias for \"phonegap serve\".", ["exec:phonegap_serve"]);
+
+  grunt.registerTask("default", ["compass:development", "coffee:compile", "copy:assets", "copy:api", "copy:templates", "copy:index", "copy:libs", "bower", "string-replace:bower"]);
 };
