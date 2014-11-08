@@ -8,7 +8,7 @@
     "url": "https://github.com/herrkris/bbPhone.git"
   },
   "buildDir": "build",
-  "readmeFilename": "README.md",
+  "readmeFilename": "README",
   "dependencies": {
     "bower": "~1.3",
     "coffee-script": "~1.7",
