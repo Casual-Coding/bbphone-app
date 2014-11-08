@@ -159,15 +159,15 @@ module.exports = function(grunt) {
     exec: {
       "phonegap_serve": {
         cwd: "phonegap",
-        command: "phonegap serve"
+        command: "../node_modules/.bin/phonegap serve"
       },
       "phonegap_build_ios": {
         cwd: "phonegap",
-        command: "phonegap build ios"
+        command: "../node_modules/.bin/phonegap build ios"
       },
       "phonegap_run_ios": {
         cwd: "phonegap",
-        command: "phonegap run ios"
+        command: "../node_modules/.bin/phonegap run ios"
       }
     },
     "string-replace": {
@@ -228,5 +228,5 @@ module.exports = function(grunt) {
   grunt.registerTask("server", ["connect:server", "serve"]);
   grunt.registerTask("serve", "Alias for \"phonegap serve\".", ["exec:phonegap_serve"]);
 
-  grunt.registerTask("default", ["compass:development", "coffee:compile", "copy:assets", "copy:api", "copy:templates", "copy:index", "copy:libs", "bower", "string-replace:bower"]);
+  grunt.registerTask("default", ["init", "compass:development", "coffee:compile", "copy:assets", "copy:api", "copy:templates", "copy:index", "copy:libs", "bower", "string-replace:bower"]);
 };

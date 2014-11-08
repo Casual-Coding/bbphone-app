@@ -26,6 +26,7 @@
     "grunt-mkdir": "^0.1.2",
     "grunt-newer": "^0.8",
     "grunt-string-replace": "^1.0.0",
+    "phonegap": "^3.6.0-0.21.19",
     "requirejs": "^2.1"
   },
   "scripts": {
