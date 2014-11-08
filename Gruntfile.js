@@ -72,10 +72,6 @@ module.exports = function(grunt) {
         src: "static/index.html",
         dest: "<%= pkg.buildDir %>/index.html"
       },
-      requirejs:  {
-        src: "lib/bower_components/requirejs/require.js",
-        dest: "<%= pkg.buildDir %>/js/require.js"
-      },
       libs: {
         files: [
           {
@@ -88,6 +84,12 @@ module.exports = function(grunt) {
             expand: true,
             cwd: "lib",
             src: "main.js",
+            dest: "<%= pkg.buildDir %>/js"
+          },
+          {
+            expand: true,
+            cwd: "lib/bower_components/requirejs/",
+            src: "require.js",
             dest: "<%= pkg.buildDir %>/js"
           }
         ]
