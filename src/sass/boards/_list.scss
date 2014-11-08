@@ -1,0 +1,28 @@
+.category-list-header {
+  padding: 5px 15px;
+}
+
+.category-list-headline {
+  font-weight: 400;
+}
+
+.board-list-item {
+  padding-left: 15px;
+  background-color: #07141c;
+}
+
+.board-list-item-wrapper {
+  border-bottom: 1px solid #000;
+
+  .board-list-item:last-child & {
+    border-bottom: none;
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px 10px 0;
+    line-height: 1.35;
+    font-size: 18px;
+  }
+}

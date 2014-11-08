@@ -1,0 +1,137 @@
+@import "compass/reset";
+@import "compass/css3";
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url(../fonts/roboto300.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/roboto400.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url(../fonts/roboto500.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "fontello";
+  src: url("../fonts/fontello.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  text-decoration: none;
+}
+
+.icon-left-open-big:before { content: '\e800'; } /* '' */
+.icon-right-open-big:before { content: '\e801'; } /* '' */
+
+*, *:before, *:after {
+    @include box-sizing(border-box);
+    -webkit-font-smoothing: antialiased;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    cursor: default;
+    @include backface-visibility(none);
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: #fff;
+}
+
+#titlebar {
+  min-height: 20px;
+  width: 100%;
+  background-color: #262d39;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: .9;
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+
+  h1 {
+    font-size: 20px;
+    font-weight: 400;
+
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex(1);
+
+    span {
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-left: 15px;
+      padding-right: 15px;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    a + span {
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+
+    a {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 50px;
+      height: 100%;
+      padding-top: 10px;
+      padding-left: 10px;
+      @include display-flex;
+      @include align-items(center);
+      text-decoration: none;
+    }
+  }
+
+  &.has-content {
+    height: 60px;
+    padding-top: 10px;
+
+    + #content {
+      padding-top: 60px;
+    }
+  }
+}
+
+#content {
+  padding-top: 20px;
+}
+
+@import "boards/list";
+@import "boards/detail";
