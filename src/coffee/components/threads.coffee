@@ -7,16 +7,14 @@ define (require) ->
   require("entities/thread")
 
   class ThreadsController extends Marionette.Controller
-    detail: (id) ->
-      promise = Channel.request("entity:thread", id)
+    detail: (id, page) ->
+      promise = Channel.request("entity:thread", id, page: page)
       promise.then (thread) ->
         Channel.execute("view:show", new LayoutView
           model: thread
         )
         Channel.execute("titlebar:show", new TitlebarView
           model: thread)
-      .catch ->
-        console.log arguments
 
       Channel.execute("view:show", new LayoutView)
       Channel.execute("titlebar:show", new TitlebarView)
@@ -24,5 +22,5 @@ define (require) ->
   controller = new ThreadsController
 
   Channel.connectCommands
-    "thread:detail": (id) ->
-      controller.detail(id)
+    "thread:detail": (id, page) ->
+      controller.detail(id, page)

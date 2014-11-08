@@ -8,11 +8,11 @@ define (require) ->
     showBoards: ->
       Channel.execute("boards:list")
 
-    showBoard: (id) ->
-      Channel.execute("board:detail", id)
+    showBoard: (id, page) ->
+      Channel.execute("board:detail", id, page)
 
-    showThread: (id) ->
-      Channel.execute("thread:detail", id)
+    showThread: (id, page) ->
+      Channel.execute("thread:detail", id, page)
 
   Channel.connectRequests
     "controller": ->

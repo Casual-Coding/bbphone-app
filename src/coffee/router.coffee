@@ -7,11 +7,14 @@ define (require) ->
     controller: Channel.request("controller")
     appRoutes:
       "": "showBoards"
-      "board/:id": "showBoard"
-      "thread/:id": "showThread"
+      "board/:id/:page": "showBoard"
+      "thread/:id/:page": "showThread"
 
+  router = null
   init = ->
-    new Router()
+    router = new Router()
 
   Channel.connectCommands
     "router:init": init
+    "router:navigate": (url) =>
+      router.navigate(url, trigger: yes)

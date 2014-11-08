@@ -35,10 +35,14 @@ define (require) ->
       if (board = response.querySelector("board"))
         response = board
 
+      threadCount = parseInt(response.querySelector("number-of-threads").getAttribute("value"), 10)
+      pages = Math.ceil(threadCount / 30)
+
       id: parseInt(response.getAttribute("id"), 10)
       name: response.querySelector("name").textContent
       description: response.querySelector("description").textContent
       category: options.category
+      pages: pages
       threads: Channel.request "entity:threads:create",
         response.querySelectorAll("threads > thread"), parse: yes
 
@@ -56,9 +60,11 @@ define (require) ->
           dataType: "xml"
           success: resolve
           error: reject
-    "entity:board": (id) ->
+    "entity:board": (id, options = {}) ->
       new Promise (resolve, reject) ->
-        board = new Board(id: id)
+        board = new Board
+          id: id
+          page: options.page
         board.fetch
           dataType: "xml"
           success: resolve
