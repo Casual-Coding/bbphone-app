@@ -207,7 +207,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-newer");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-mkdir");
-  grunt.loadNpmTasks("grunt-cordovacli");
   grunt.loadNpmTasks("grunt-contrib-connect");
   grunt.loadNpmTasks("grunt-exec");
 
