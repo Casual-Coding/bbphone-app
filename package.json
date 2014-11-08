@@ -1,0 +1,36 @@
+{
+  "name": "bb-phone",
+  "description": "An iPhone client for the mods.de-Boards",
+  "version": "0.0.1",
+  "author": "Kristof Dreier <kontakt@kristofdreier.de>",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "buildDir": "build",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "bower": "~1.3",
+    "coffee-script": "~1.7",
+    "grunt": "^0.4.5",
+    "grunt-bower-requirejs": "*",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-coffee": "~0.7",
+    "grunt-contrib-compass": "~0.7",
+    "grunt-contrib-copy": "~0.4",
+    "grunt-contrib-requirejs": "~0.4",
+    "grunt-string-replace": "^1.0.0",
+    "requirejs": "~2.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.5",
+    "grunt-newer": "~0.8"
+  },
+  "scripts": {
+    "install": "./node_modules/.bin/bower install -s",
+    "watch": "bundle exec ./node_modules/.bin/grunt && bundle exec ./node_modules/.bin/grunt watch",
+    "build": "bundle exec ./node_modules/.bin/grunt",
+    "clean": "bundle exec ./node_modules/.bin/grunt clean"
+  }
+}
