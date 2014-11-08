@@ -67,6 +67,11 @@ a {
   color: #fff;
 }
 
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
 #titlebar {
   min-height: 20px;
   width: 100%;
@@ -133,5 +138,14 @@ a {
   padding-top: 20px;
 }
 
+strong {
+  font-weight: 500;
+}
+
+highlight {
+  color: #ff3;
+}
+
 @import "boards/list";
 @import "boards/detail";
+@import "posts/list";

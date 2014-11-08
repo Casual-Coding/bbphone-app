@@ -15,7 +15,13 @@ define (require) ->
       thread: options.thread
       date: moment.unix(response.querySelector("date").getAttribute("timestamp"))
       user: Channel.request "entity:user:create",
-        response.querySelector("user")
+        response.querySelector("user"),
+        parse: yes
+
+    toJSON: ->
+      data = super
+      data.user = data.user.toJSON()
+      data
 
   class Posts extends Backbone.Collection
     model: Post

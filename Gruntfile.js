@@ -95,6 +95,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: "lib/none_bower",
+            src: "*.js",
+            dest: "<%= pkg.buildDir %>/js/vendors/"
+          },
+          {
+            expand: true,
             cwd: "lib",
             src: "main.js",
             dest: "<%= pkg.buildDir %>/js"

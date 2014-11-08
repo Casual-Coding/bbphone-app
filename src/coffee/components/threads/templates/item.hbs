@@ -1,3 +1,13 @@
 <div class="post-list-item-wrapper">
-  {{content}}
+  <header class="post-header">
+    <div class="meta">
+      <span class="username">{{user.name}}</span>
+      <span class="date">{{date "DD.MM.YYYY HH:mm:ss" date}}</span>
+    </div>
+  </header>
+  <div class="post-content">
+    <div class="post-text">
+      {{{bbcode content}}}
+    </div>
+  </div>
 </div>
