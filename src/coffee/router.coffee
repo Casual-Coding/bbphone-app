@@ -8,6 +8,7 @@ define (require) ->
     appRoutes:
       "": "showBoards"
       "board/:id": "showBoard"
+      "thread/:id": "showThread"
 
   init = ->
     new Router()

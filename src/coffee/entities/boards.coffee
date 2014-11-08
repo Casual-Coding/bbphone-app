@@ -2,13 +2,16 @@ define (require) ->
   Backbone = require("backbone")
   Channel = require("channel")
   require("entities/thread")
+  # require("entities/user")
 
   class Category extends Backbone.Model
     parse: (response) ->
       id: parseInt(response.getAttribute("id"), 10)
       name: response.querySelector("name").textContent
       description: response.querySelector("description").textContent
-      boards: new Boards(response.querySelectorAll("boards > board"), parse: yes)
+      boards: new Boards response.querySelectorAll("boards > board"),
+        parse: yes
+        category: this
 
   class Categories extends Backbone.Collection
     model: Category
@@ -28,39 +31,35 @@ define (require) ->
       else
         return "api/board.xml"
 
-    parse: (response) ->
+    parse: (response, options = {}) ->
       if (board = response.querySelector("board"))
         response = board
 
       id: parseInt(response.getAttribute("id"), 10)
       name: response.querySelector("name").textContent
       description: response.querySelector("description").textContent
-      category_id: parseInt(response.querySelector("in-category").getAttribute("id"), 10)
+      category: options.category
       threads: Channel.request "entity:threads:create",
         response.querySelectorAll("threads > thread"), parse: yes
 
   class Boards extends Backbone.Collection
     model: Board
 
-    parse: (response) ->
+    parse: (response, options = {}) ->
       _.toArray(response)
 
   Channel.connectRequests
     "entity:boards": ->
-      promise = new Promise (resolve, reject) ->
+      new Promise (resolve, reject) ->
         categories = new Categories
         categories.fetch
           dataType: "xml"
           success: resolve
           error: reject
-
-      promise
     "entity:board": (id) ->
-      promise = new Promise (resolve, reject) ->
+      new Promise (resolve, reject) ->
         board = new Board(id: id)
         board.fetch
           dataType: "xml"
           success: resolve
           error: reject
-
-      promise
