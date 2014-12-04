@@ -80,6 +80,7 @@ img {
   top: 0;
   left: 0;
   opacity: .9;
+  z-index: 20;
   @include display-flex;
   @include justify-content(center);
   @include align-items(center);

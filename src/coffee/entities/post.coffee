@@ -13,6 +13,7 @@ define (require) ->
       title: response.querySelector("message > title").textContent
       content: response.querySelector("message > content").textContent
       thread: options.thread
+      avatar: response.querySelector("avatar").textContent
       date: moment.unix(response.querySelector("date").getAttribute("timestamp"))
       user: Channel.request "entity:user:create",
         response.querySelector("user"),
