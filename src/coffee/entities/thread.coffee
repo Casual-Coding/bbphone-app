@@ -16,6 +16,10 @@ define (require) ->
         response = thread
         page = parseInt(response.querySelector("posts").getAttribute("page"), 10)
 
+        currentUserId = parseInt(response.getAttribute("current-user-id"), 10)
+        if currentUserId > 0
+          Channel.execute("entity:user:current", currentUserId)
+
       id: parseInt(response.getAttribute("id"), 10)
       title: response.querySelector("title").textContent
       subtitle: response.querySelector("subtitle").textContent

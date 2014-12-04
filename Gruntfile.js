@@ -135,7 +135,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: ["<%= pkg.buildDir %>", "phonegap/platforms", "phonegap/plugins"]
+      build: ["<%= pkg.buildDir %>"]
     },
     watch: {
       coffee: {

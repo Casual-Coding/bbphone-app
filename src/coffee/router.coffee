@@ -9,6 +9,7 @@ define (require) ->
       "": "showBoards"
       "board/:id/:page": "showBoard"
       "thread/:id/:page": "showThread"
+      "login": "showLogin"
 
   router = null
   init = ->

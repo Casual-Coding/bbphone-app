@@ -3,6 +3,7 @@ define (require) ->
   Channel = require("channel")
   require("components/boards")
   require("components/threads")
+  require("components/user")
 
   class Controller extends Marionette.Controller
     showBoards: ->
@@ -13,6 +14,9 @@ define (require) ->
 
     showThread: (id, page) ->
       Channel.execute("thread:detail", id, page)
+
+    showLogin: ->
+      Channel.execute("user:login")
 
   Channel.connectRequests
     "controller": ->

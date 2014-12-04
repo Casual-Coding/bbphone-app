@@ -22,6 +22,10 @@ define (require) ->
         return "api/boards.xml"
 
     parse: (response) ->
+      currentUserId = parseInt(response.querySelector("categories").getAttribute("current-user-id"), 10)
+      if currentUserId > 0
+        Channel.execute("entity:user:current", currentUserId)
+
       _.toArray(response.querySelectorAll("categories > category"))
 
   class Board extends Backbone.Model
@@ -34,6 +38,10 @@ define (require) ->
     parse: (response, options = {}) ->
       if (board = response.querySelector("board"))
         response = board
+
+        currentUserId = parseInt(response.getAttribute("current-user-id"), 10)
+        if currentUserId > 0
+          Channel.execute("entity:user:current", currentUserId)
 
       threadCount = parseInt(response.querySelector("number-of-threads").getAttribute("value"), 10)
       pages = Math.ceil(threadCount / 30)
