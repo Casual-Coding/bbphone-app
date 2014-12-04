@@ -7,20 +7,37 @@ define (require) ->
     className: "post-list-item"
 
     onRender: ->
-      @$el.find(".image.not-loaded").bind "click", (ev) ->
-        image = new Image
-        $this = $("[data-image=\"#{$(this).data("image")}\"]")
+      if navigator.connection and navigator.connection.type isnt "wifi"
+        @$el.find(".image.not-loaded").bind "click", (ev) ->
+          image = new Image
+          $this = $("[data-image=\"#{$(this).data("image")}\"]")
 
-        image.onload = ->
-          $image = $(this)
-          $this
-            .unbind("click")
-            .removeClass("not-loaded is-loading")
-            .addClass("loaded")
-            .append($image)
+          image.onload = ->
+            $image = $(this)
+            $this
+              .unbind("click")
+              .removeClass("not-loaded is-loading")
+              .addClass("loaded")
+              .append($image)
 
-        image.src = $this.data("image")
-        $this.addClass("is-loading")
+          image.src = $this.data("image")
+          $this.addClass("is-loading")
 
-        ev.preventDefault()
-        ev.stopPropagation()
+          ev.preventDefault()
+          ev.stopPropagation()
+      else
+        @$el.find(".image.not-loaded").each (index, element) ->
+          image = new Image
+          $this = $(element)
+
+          image.onload = ->
+            $image = $(this)
+            $this
+              .unbind("click")
+              .removeClass("not-loaded is-loading")
+              .addClass("loaded")
+              .append($image)
+
+          image.src = $this.data("image")
+          $this.addClass("is-loading")
+
