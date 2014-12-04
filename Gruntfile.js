@@ -174,6 +174,10 @@ module.exports = function(grunt) {
       "phonegap_run_ios": {
         cwd: "phonegap",
         command: "../node_modules/.bin/phonegap run ios"
+      },
+      "phonegap_install_plugins": {
+        cwd: "phonegap",
+        command: "../node_modules/.bin/phonegap plugin add <%= pkg.cordovaPlugins %>"
       }
     },
     "string-replace": {
@@ -194,7 +198,7 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          port: 7000,
+          port: 8000,
           hostname: "localhost",
           base: "<%= pkg.buildDir %>",
           keepalive: true
@@ -223,11 +227,13 @@ module.exports = function(grunt) {
 
   grunt.registerTask("build:ios", "Build Platforms.", [
     "default",
+    "exec:phonegap_install_plugins",
     "exec:phonegap_build_ios"
   ]);
 
   grunt.registerTask("run:ios", "Run Platforms.", [
     "default",
+    "exec:phonegap_install_plugins",
     "exec:phonegap_run_ios"
   ]);
 

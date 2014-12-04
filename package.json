@@ -29,6 +29,9 @@
     "phonegap": "^3.6.0-0.21.19",
     "requirejs": "^2.1"
   },
+  "cordovaPlugins": [
+    "org.apache.cordova.inappbrowser"
+  ],
   "scripts": {
     "install": "./node_modules/.bin/bower install -s",
     "postinstall": "bundle exec ./node_modules/.bin/grunt",
