@@ -1,11 +1,11 @@
 {
   "name": "bb-phone",
   "description": "An iPhone client for the mods.de boards",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "author": "Kristof Dreier <kontakt@kristofdreier.de>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/herrkris/bbPhone.git"
+    "url": "https://github.com/herrkris/bbphone-app.git"
   },
   "buildDir": "./phonegap/www",
   "readmeFilename": "README.md",
