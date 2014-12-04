@@ -9,7 +9,7 @@ define (require) ->
     onRender: ->
       if navigator.connection and navigator.connection.type isnt "wifi"
         @$el.find(".image.not-loaded").bind "click", (ev) =>
-          @_loadImage(this)
+          @_loadImage(ev.currentTarget)
           ev.preventDefault()
           ev.stopPropagation()
       else
