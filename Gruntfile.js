@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
+  var pkg = grunt.file.readJSON("package.json");
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON("package.json"),
+    pkg: pkg,
     coffee: {
       compile: {
         options: {
@@ -177,7 +179,7 @@ module.exports = function(grunt) {
       },
       "phonegap_install_plugins": {
         cwd: "phonegap",
-        command: "../node_modules/.bin/phonegap plugin add <%= pkg.cordovaPlugins %>"
+        command: "../node_modules/.bin/cordova plugin add " + pkg.cordovaPlugins.join(" ")
       }
     },
     "string-replace": {

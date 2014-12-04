@@ -27,10 +27,12 @@
     "grunt-newer": "^0.8",
     "grunt-string-replace": "^1.0.0",
     "phonegap": "^3.6.0-0.21.19",
-    "requirejs": "^2.1"
+    "requirejs": "^2.1",
+    "cordova": "^4.1.2"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.inappbrowser"
+    "org.apache.cordova.inappbrowser",
+    "org.apache.cordova.network-information"
   ],
   "scripts": {
     "install": "./node_modules/.bin/bower install -s",
