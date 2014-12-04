@@ -8,36 +8,25 @@ define (require) ->
 
     onRender: ->
       if navigator.connection and navigator.connection.type isnt "wifi"
-        @$el.find(".image.not-loaded").bind "click", (ev) ->
-          image = new Image
-          $this = $("[data-image=\"#{$(this).data("image")}\"]")
-
-          image.onload = ->
-            $image = $(this)
-            $this
-              .unbind("click")
-              .removeClass("not-loaded is-loading")
-              .addClass("loaded")
-              .append($image)
-
-          image.src = $this.data("image")
-          $this.addClass("is-loading")
-
+        @$el.find(".image.not-loaded").bind "click", (ev) =>
+          @_loadImage(this)
           ev.preventDefault()
           ev.stopPropagation()
       else
-        @$el.find(".image.not-loaded").each (index, element) ->
-          image = new Image
-          $this = $(element)
+        @$el.find(".image.not-loaded").each (index, element) =>
+          @_loadImage(element)
 
-          image.onload = ->
-            $image = $(this)
-            $this
-              .unbind("click")
-              .removeClass("not-loaded is-loading")
-              .addClass("loaded")
-              .append($image)
+    _loadImage: (element) ->
+      image = new Image
+      $this = $(element)
 
-          image.src = $this.data("image")
-          $this.addClass("is-loading")
+      image.onload = ->
+        $image = $(this)
+        $this
+          .unbind("click")
+          .removeClass("not-loaded is-loading")
+          .addClass("loaded")
+          .append($image)
 
+      image.src = $this.data("image")
+      $this.addClass("is-loading")
