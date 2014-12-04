@@ -13,10 +13,12 @@ define (require) ->
       range: "[type=range]"
       bubble: ".pagination-bubble"
       spoiler: ".spoiler"
+      links: "a[href^=\"http://\"], a[href^=\"https://\"]"
     events:
       "change @ui.range": "onRangeChange"
       "input @ui.range": "onRangeInput"
       "click @ui.spoiler": "onSpoilerClick"
+      "click @ui.links": "onLinkClick"
 
     onRangeChange: ->
       Channel.execute("router:navigate", "#thread/#{@model.get("id")}/#{@ui.range.val()}")
@@ -26,6 +28,13 @@ define (require) ->
 
     onSpoilerClick: (ev) ->
       $(ev.currentTarget).toggleClass("active")
+
+    onLinkClick: (ev) ->
+      url = $(ev.currentTarget).attr("href")
+      @options.channel.trigger("link:click", url)
+
+      ev.preventDefault()
+      ev.stopPropagation()
 
     onRender: ->
       if @model
