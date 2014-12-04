@@ -1,0 +1,31 @@
+.spoiler {
+  position: relative;
+  padding-top: 25px;
+
+  &.active {
+    > div {
+      background-color: transparent;
+      color: inherit;
+
+      > * {
+        visibility: visible
+      }
+    }
+  }
+
+  &:before {
+    content: "Spoiler - antappen, um zu lesen";
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  > div {
+    background-color: #091827;
+    color: #091827;
+
+    > * {
+      visibility: hidden;
+    }
+  }
+}

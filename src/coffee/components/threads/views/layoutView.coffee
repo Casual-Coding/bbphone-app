@@ -12,15 +12,20 @@ define (require) ->
     ui:
       range: "[type=range]"
       bubble: ".pagination-bubble"
+      spoiler: ".spoiler"
     events:
-      "change @ui.range": "onChangeRange"
-      "input @ui.range": "onInputRange"
+      "change @ui.range": "onRangeChange"
+      "input @ui.range": "onRangeInput"
+      "click @ui.spoiler": "onSpoilerClick"
 
-    onChangeRange: ->
+    onRangeChange: ->
       Channel.execute("router:navigate", "#thread/#{@model.get("id")}/#{@ui.range.val()}")
 
-    onInputRange: ->
+    onRangeInput: ->
       @ui.bubble.text(@ui.range.val())
+
+    onSpoilerClick: (ev) ->
+      $(ev.currentTarget).toggleClass("active")
 
     onRender: ->
       if @model
