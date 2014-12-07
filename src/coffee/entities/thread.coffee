@@ -16,11 +16,12 @@ define (require) ->
         response = thread
         page = parseInt(response.querySelector("posts").getAttribute("page"), 10)
 
-        currentUserId = parseInt(response.getAttribute("current-user-id"), 10)
-        if currentUserId > 0
-          Channel.execute("entity:user:current", currentUserId)
+      token = null
+      if token = response.querySelector("token-newreply")
+        token = token.getAttribute("value")
 
       id: parseInt(response.getAttribute("id"), 10)
+      token: token
       title: response.querySelector("title").textContent
       subtitle: response.querySelector("subtitle").textContent
       board_id: parseInt(response.querySelector("in-board").getAttribute("id"), 10)

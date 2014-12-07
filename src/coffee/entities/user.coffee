@@ -24,9 +24,18 @@ define (require) ->
           data: @toJSON()
           dataType: "html"
           processData: yes
-          success: (response, status, request) ->
+          success: (response, status, request) =>
             if (response.match(/Erfolgreich eingeloggt/ig) || []).length > 0
               if (match = response.match(/SSO\.php\?UID=(\d+)&login=(.*?)&lifetime=(\d+)/))
+                currentUser = @
+
+                currentUser.set("username", @get("login_username"))
+                currentUser.set("id", parseInt(match[1], 10))
+
+                @unset("login_username")
+                @unset("login_password")
+                @unset("login_lifetime")
+
                 $.get("http://forum.mods.de/SSO.php?UID=#{match[1]}&login=#{match[2]}&lifetime=#{match[3]}", resolve)
             else if (response.match(/Passwort falsch/ig) || []).length > 0
               reject("Benutzername oder Kennwort falsch")
@@ -70,5 +79,8 @@ define (require) ->
     "entity:user:login": (data) ->
       user = new User(data)
       user.login()
+    "entity:user:logout": ->
+      new Promise (resolve, reject) ->
+        $.get("http://login.mods.de/logout/?&UID=23349&a=TY7r&redirect=")
     "entity:user:current": ->
       currentUser
