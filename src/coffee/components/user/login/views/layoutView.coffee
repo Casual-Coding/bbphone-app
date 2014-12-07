@@ -1,6 +1,6 @@
 define (require) ->
   Marionette = require("marionette")
-  Template = require("hbs!components/user/templates/layout")
+  Template = require("hbs!components/user/login/templates/layout")
   Channel = require("channel")
 
   class UserLayoutView extends Marionette.LayoutView
@@ -14,11 +14,4 @@ define (require) ->
       "click @ui.button": "onButtonClick"
 
     onButtonClick: ->
-      Channel.request "entity:user:login",
-        login_username: @ui.username.val()
-        login_password: @ui.password.val()
-        login_lifetime: 31536000
-      .then ->
-        Channel.execute("router:navigate", "#")
-      .catch (error) ->
-        alert(error)
+      @options.channel.execute("login", @ui.username.val(), @ui.password.val())
