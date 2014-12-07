@@ -85,6 +85,19 @@
         .post-text {
             @include flex(1);
 
+            ul {
+                list-style: disc;
+                margin-left: 20px;
+
+                li {
+                    margin-bottom: 5px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
             > blockquote {
                 font-size: 80%;
                 line-height: 1.3;

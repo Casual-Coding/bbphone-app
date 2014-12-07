@@ -29,3 +29,28 @@
     }
   }
 }
+
+.inline-code {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.code {
+  background-color: grey;
+  padding: 10px;
+  font-family: monospace;
+  white-space: pre;
+}
+
+.mod {
+  font-weight: bold;
+  color: #ff3;
+}
+
+.trigger {
+  font-size: 8px;
+
+  &.active {
+    font-size: inherit;
+  }
+}
