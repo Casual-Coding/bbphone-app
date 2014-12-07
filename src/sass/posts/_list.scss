@@ -96,6 +96,12 @@
             }
         }
 
+        .edited {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 25px;
+        }
+
         blockquote[data-author]:before {
             content: 'Zitat von ' attr(data-author) '\A';
             white-space: pre;
