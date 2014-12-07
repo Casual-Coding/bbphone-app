@@ -16,6 +16,13 @@ define (require) ->
         @$el.find(".image.not-loaded").each (index, element) =>
           @_loadImage(element)
 
+      @$el.find(".video.youtube").each (index, element) =>
+        $element = $(element)
+        id = $element.data("video")
+          .match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/)[1]
+
+        $element.append("<iframe src=\"https://www.youtube.com/embed/#{id}\" frameborder=\"0\" allowfullscreen></iframe>")
+
     _loadImage: (element) ->
       image = new Image
       $this = $(element)
