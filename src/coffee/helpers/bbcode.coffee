@@ -1,6 +1,7 @@
 define (require) ->
   Handlebars = require("hbs/handlebars")
-  BBCodeParser = require("bbcode2")
+  BBCodeParser = require("bbcodeparser")
+  require("xregexp")
 
   bbcode = (text) ->
     new Handlebars.SafeString(BBCodeParser.parse(text))

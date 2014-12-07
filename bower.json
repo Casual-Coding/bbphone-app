@@ -24,6 +24,8 @@
     "require-handlebars-plugin": "~0.8",
     "underscore": "~1.6",
     "backbone.wreqr": "~1.3",
-    "backbone.babysitter": "~0.x"
+    "backbone.babysitter": "~0.x",
+    "bbcodeparser": "~0.x",
+    "xregexp": "master"
   }
 }
