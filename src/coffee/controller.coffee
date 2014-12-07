@@ -18,6 +18,9 @@ define (require) ->
     showLogin: ->
       Channel.execute("user:login")
 
+    logout: ->
+      Channel.execute("user:logout")
+
   Channel.connectRequests
     "controller": ->
       new Controller
