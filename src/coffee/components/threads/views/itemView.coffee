@@ -23,6 +23,9 @@ define (require) ->
 
         $element.append("<iframe src=\"https://www.youtube.com/embed/#{id}\" frameborder=\"0\" allowfullscreen></iframe>")
 
+      @$el.find(".trigger").bind "click", ->
+        $(this).toggleClass("active")
+
     _loadImage: (element) ->
       image = new Image
       $this = $(element)
