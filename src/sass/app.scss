@@ -149,47 +149,53 @@ highlight {
 
 .pagination {
   padding: 20px 10px;
-  @include display-flex;
-  @include justify-content(center);
-  @include align-items(center);
+  position: relative;
+}
 
-  .pagination-bubble {
-    color: #fff;
-    padding-left: 10px;
-  }
+.range-track {
+  height: 14px;
+  position: relative;
+  background-color: #262d39;
+  z-index: 4;
 
-  input {
-    width: 100%;
-    @include appearance(none);
-
-    &::-webkit-slider-thumb {
-      @include appearance(none);
-      border: 1px solid #000000;
-      height: 36px;
-      width: 36px;
-      border-radius: 36px;
-      background: #ffffff;
-      cursor: pointer;
-      margin-top: -14px;
-      position: relative;
-    }
-
-    &::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 10px;
-      cursor: pointer;
-      background: #222E3A;
-    }
-
-    &:focus {
-      outline: none;
-
-      &::-webkit-slider-runnable-track {
-        background: #222E3A;
-      }
-    }
+  &:after {
+    content: attr(data-value);
+    display: block;
+    text-align: center;
+    z-index: 5;
+    position: relative;
+    top: 0;
+    font-size: 12px;
   }
 }
+
+.range {
+  position: absolute;
+  top: -13px;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+
+  &:after {
+    content: "";
+    width: 1px;
+    height: 14px;
+    background-color: #fff;
+    position: absolute;
+    top: 13px;
+    left: 19px;
+    z-index: 11;
+  }
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 
 @import "boards/list";
 @import "boards/detail";

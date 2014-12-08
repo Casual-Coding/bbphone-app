@@ -8,23 +8,18 @@ define (require) ->
     template: Template
     regions:
       content: ".thread-list-wrapper"
+      pagination: ".pagination"
     className: ".board-detail"
-    ui:
-      range: "[type=range]"
-      bubble: ".pagination-bubble"
-    events:
-      "change @ui.range": "onChangeRange"
-      "input @ui.range": "onInputRange"
-
-    onChangeRange: ->
-      Channel.execute("router:navigate", "#board/#{@model.get("id")}/#{@ui.range.val()}")
-
-    onInputRange: ->
-      @ui.bubble.text(@ui.range.val())
 
     onRender: ->
       if @model
         @content.show(new CollectionView(collection: @model.get("threads")))
+
+        @pagination.show Channel.request "ui:range",
+          min: 1
+          max: @model.get("pages")
+          value: @model.get("page")
+          channel: @options.channel
 
     serializeData: ->
       if @model

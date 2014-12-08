@@ -2,6 +2,7 @@ define (require) ->
   Marionette = require("marionette")
   Channel = require("channel")
   require("router")
+  require("ui/range")
 
   App = new Marionette.Application
 

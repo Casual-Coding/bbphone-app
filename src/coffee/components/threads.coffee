@@ -7,6 +7,8 @@ define (require) ->
   require("entities/thread")
 
   class ThreadsController extends Marionette.Controller
+    currentId: null
+
     initialize: ->
       @channel = Channel.request("channel")
 
@@ -15,6 +17,8 @@ define (require) ->
     detail: (id, page) ->
       promise = Channel.request("entity:thread", id, page: page)
       promise.then (thread) =>
+        @currentId = id
+
         Channel.execute("view:show", new LayoutView
           model: thread
           channel: @channel
@@ -55,7 +59,8 @@ define (require) ->
     _setEventHandlers: ->
       @channel.connectEvents
         "link:click": @_onLinkClick
-
+        "range:change": (value) =>
+          Channel.execute("router:navigate", "thread/#{@currentId}/#{value}")
 
   controller = new ThreadsController
 

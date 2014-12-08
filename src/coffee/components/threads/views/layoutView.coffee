@@ -8,23 +8,14 @@ define (require) ->
     template: Template
     regions:
       content: ".post-list-wrapper"
+      pagination: ".pagination"
     className: "thread-detail"
     ui:
-      range: "[type=range]"
-      bubble: ".pagination-bubble"
       spoiler: ".spoiler"
       links: "a[href^=\"http://\"], a[href^=\"https://\"]"
     events:
-      "change @ui.range": "onRangeChange"
-      "input @ui.range": "onRangeInput"
       "click @ui.spoiler": "onSpoilerClick"
       "click @ui.links": "onLinkClick"
-
-    onRangeChange: ->
-      Channel.execute("router:navigate", "#thread/#{@model.get("id")}/#{@ui.range.val()}")
-
-    onRangeInput: ->
-      @ui.bubble.text(@ui.range.val())
 
     onSpoilerClick: (ev) ->
       $(ev.currentTarget).toggleClass("active")
@@ -39,6 +30,12 @@ define (require) ->
     onRender: ->
       if @model
         @content.show(new CollectionView(collection: @model.get("posts")))
+
+        @pagination.show Channel.request "ui:range",
+          min: 1
+          max: @model.get("pages")
+          value: @model.get("page")
+          channel: @options.channel
 
     serializeData: ->
       if @model
