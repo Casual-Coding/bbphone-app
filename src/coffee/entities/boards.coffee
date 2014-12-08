@@ -27,7 +27,7 @@ define (require) ->
   class Board extends Backbone.Model
     url: ->
       if Channel.request("app").isCordova
-        return "http://forum.mods.de/bb/xml/board.php?BID=#{@get("id")}"
+        return "http://forum.mods.de/bb/xml/board.php?BID=#{@get("id")}&page=#{@get("page")}"
       else
         return "api/board.xml"
 
