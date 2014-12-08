@@ -1,0 +1,12 @@
+2014-12-04 19:35:51.964 bbPhone[33673:2848005] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-04 19:35:51.965 bbPhone[33673:2848005] Multi-tasking -> Device: YES, App: YES
+2014-12-04 19:35:51.993 bbPhone[33673:2848005] Unlimited access to network resources
+2014-12-04 19:35:52.009 bbPhone[33673:2848005] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-04 19:35:52.886 bbPhone[33673:2848005] Resetting plugins due to page load.
+2014-12-04 19:35:53.075 bbPhone[33673:2848005] Finished load of: file:///Users/kris/Library/Developer/CoreSimulator/Devices/EF51FD96-5315-4827-B843-8FAA41D1FCA6/data/Containers/Bundle/Application/677F274C-2481-40E1-9A73-B2AE6F39CDE0/bbPhone.app/www/index.html
